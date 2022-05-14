@@ -63,10 +63,17 @@ class Admin::PaymentsController < ApplicationController
         numbering.update(final_number: newNumber)
 
         online.membership_number = newNumber
+
+        RegistrationMailer.membership_number(online).deliver
       end
 
       # 振込確認
       if payment.paid == true
+        subjectCreated = Subject.find_by(online_id: online.id, course: courseNum)
+        if subjectCreated.nil?
+          RegistrationMailer.payment_completion(online, payment).deliver
+        end
+
         if startable
           # Subjectテーブルに受講講座登録
           subject = Subject.new

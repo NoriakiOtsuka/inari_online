@@ -23,6 +23,25 @@ class RegistrationMailer < ApplicationMailer
     )
   end
 
+  def membership_number(online)
+    @online = online
+
+    mail(
+      subject: "【稲荷塾オンライン講座】登録完了のお知らせ",
+      to: online.email
+    )
+  end
+
+  def payment_completion(online, payment)
+    @online = online
+    @payment = payment
+
+    mail(
+      subject: "【稲荷塾オンライン講座】 受講料のお支払いを確認しました",
+      to: online.parent_email
+    )
+  end
+
   def course_application(online, payment)
     @online = online
     @payment = payment
