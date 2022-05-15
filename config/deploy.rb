@@ -8,6 +8,7 @@ set :rbenv_ruby, '2.7.5'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :deploy_to, "/home/ec2-user/inari_online"
+set :branch, ENV["BRANCH"]
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
