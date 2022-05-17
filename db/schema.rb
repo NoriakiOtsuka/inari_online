@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2021_07_30_143715) do
     t.integer "math_ex4f", default: 0
     t.integer "math_ex4s", default: 0
     t.integer "membership_number"
-    t.boolean "status", default: true, null: false
+    t.boolean "status", default: false, null: false
     t.string "note"
     t.index ["email"], name: "index_onlines_on_email", unique: true
     t.index ["reset_password_token"], name: "index_onlines_on_reset_password_token", unique: true
