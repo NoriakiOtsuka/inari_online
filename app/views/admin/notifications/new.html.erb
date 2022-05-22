@@ -56,10 +56,10 @@
 
             <h5 class="mt-3">受講生リスト</h5>
             <ul class="list-group">
-              <% @onlines.each do |online| %>
+              <% @onlines.each_with_index do |online, index| %>
                 <li class="list-group-item border border-0 border-bottom">
-                  <%= check_box "", "onlineId", {class: "form-check-input"}, online.id, false %>
-                  <%= online.first_name %><%= online.last_name %>
+                  <%= check_box "", "onlineId", {class: "form-check-input", id: "online#{index}"}, online.id, false %>
+                  <%= label_tag :"online#{index}", "#{online.first_name}#{online.last_name}" %>
                 </li>
               <% end %>
             </ul>

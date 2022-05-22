@@ -14,6 +14,7 @@ class PaymentsController < ApplicationController
     end
 
     # 受講申請可否配列
+    online = current_online
     subjects = Array.new(14)
     14.times do |i|
       if i == 1 - 1
@@ -21,11 +22,11 @@ class PaymentsController < ApplicationController
       elsif i == 2 - 1
         subjects[i] = true if (stages[0] == 1)
       elsif i == 3 - 1
-        subjects[i] = true if (((stages[0] == 1) && (stages[1] == nil)) || (stages[1] == 1) || (stages[0] == nil))
+        subjects[i] = true if (stages[0] == 1 && (online.math_ias == 0 || (stages[1] == 1)))
       elsif i == 4 - 1
         subjects[i] = true if (stages[2] == 1)
       elsif i == 5 - 1
-        subjects[i] = true if (((stages[2] == 1) && (stages[3] == nil)) || (stages[3] == 1) || ((stages[0] == nil) && (stages[2] == nil)))
+        subjects[i] = true if (stages[2] == 1 && (online.math_iibs == 0) || (stages[3] == 1))
       elsif i == 6 - 1
         subjects[i] = true if (stages[4] == 1)
       elsif i == 7 - 1

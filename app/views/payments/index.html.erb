@@ -38,16 +38,24 @@
                       <button class="btn-close" data-bs-dismiss="modal" arial-label="閉じる"></button>
                     </div>
                     <div class="modal-body">
-                      <span>
-                        <%= payment[0] %>の受講を申請します。<br><br>
-                        【注意事項】<br>
-                        ・現在受講中の講座がある方は、受講料のお振込みが確認でき、現在受講中の講座が終了したら、次の講座についての案内を送信いたします。<br>
-                        ・現在受講中の講座がない方(最後に受講した講座がすでに終了している方)は、受講料のお振込みが確認でき次第、次の講座についての案内を送信いたします。
-                      </span>
+                      <% if i < 7 %>
+                        <span>
+                          <%= payment[0] %>の受講を申請します。<br><br>
+                          【注意事項】<br>
+                          現在受講中の講座がある方は、受講料のお振込みが確認でき、現在受講中の講座が終了したら、次の講座についての案内を送信いたします。<br>
+                          現在受講中の講座がない方(最後に受講した講座がすでに終了している方)は、受講料のお振込みが確認でき次第、次の講座についての案内を送信いたします。
+                        </span>
+                      <% else %>
+                        <span>
+                          <%= payment[0] %>の受講を申請します。<br><br>
+                          【注意事項】<br>
+                          演習の各講座は、他に受講中の講座がある場合でも、受講料のお振込みが確認できた時点で講座が開始されます。<br>新しい講座の開始を希望されるタイミングで受講料のお振込みをお願いします。
+                        </span>
+                      <% end %>
                     </div>
                     <div class="modal-footer">
                       <button class="btn btn-outline-primary" data-bs-dismiss="modal">キャンセル</button>
-                      <%= link_to "申請する", payments_path(course: payment[0]), method: :post, class: "btn btn-primary" %>
+                      <%= link_to "申請する", payments_path(course: payment[0]), method: :post, data: {disable_with: "申請する"}, class: "btn btn-primary" %>
                     </div>
                   </div>
                 </div>
